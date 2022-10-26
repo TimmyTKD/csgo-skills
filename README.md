@@ -13,4 +13,5 @@ Some skills you can use to get "better" at CS:GO
 
 ## Results
 You should be able to achieve this with some practice
+
 ![Example Of Skill](https://cdn.discordapp.com/attachments/842847431389216771/1034973394447388762/unknown.png)
