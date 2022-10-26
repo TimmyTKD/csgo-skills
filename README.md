@@ -17,3 +17,7 @@ You should be able to achieve this with some practice
 ![Example Of Skill](https://cdn.discordapp.com/attachments/842847431389216771/1034973394447388762/unknown.png)
 
 ![Example Of Skill 2](https://cdn.discordapp.com/attachments/842847431389216771/1034976441143672933/unknown.png)
+
+![Example Of Skill 3](https://cdn.discordapp.com/attachments/842847431389216771/1034978427826077786/unknown.png)
+
+![Example Of Skill 4](https://cdn.discordapp.com/attachments/842847431389216771/1034979170993852446/unknown.png)
