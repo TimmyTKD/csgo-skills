@@ -190,7 +190,7 @@ Setting Settings[] = {
 	Setting("AimbotFOV", "10", "Type FOV (>0)"),
 	Setting("WallCheck", "ON"),
 	Setting("Chams", "ON"),
-	Setting("ChamsBright", "20.0", "Type in amount")
+	Setting("ChamsBright", "600", "Type in amount")
 };
 
 Setting GetSetting(string settingName) {
@@ -306,11 +306,7 @@ void CmdPrint()
 
 			Sleep(1000);
 
-			ShellExecuteA(NULL, "open", path.str().c_str(), NULL, NULL, SW_NORMAL);
-
-			Sleep(100);
-
-			ExitProcess(0);
+			system(path.str().c_str());
 		}
 	}
 }
@@ -849,6 +845,8 @@ void Aimbot() {
 				float xAngle = abs(angleDegY / stof(GetSetting("AimSmoothness").Value)) < 0.1 / stof(GetSetting("AimSmoothness").Value) ? angleDegY : angleDegY / stof(GetSetting("AimSmoothness").Value);
 				float yAngle = abs(angleDeg / stof(GetSetting("AimSmoothness").Value)) < 0.25 / stof(GetSetting("AimSmoothness").Value) ? angleDeg : angleDeg < 0 ? clamp(angleDeg / stof(GetSetting("AimSmoothness").Value), -clampMax, -0.001f) : clamp(angleDeg / stof(GetSetting("AimSmoothness").Value), 0.001f, clampMax);
 
+				if(abs(xAngle) < 0.02 && abs(yAngle) < 0.02)
+					continue;
 
 				//cout << "\n"  << lRot.y << " | " << angleDeg;
 
@@ -1044,12 +1042,12 @@ void Chams()
 	const auto client = memory.GetModuleAddress("client.dll");
 	const auto engine = memory.GetModuleAddress("engine.dll");
 
-	const auto Team = Color{ 255, 0, 100 };
+	const auto Team = Color{ 255, 50, 0 };
 	const auto Back = Color{ 255, 255, 255 };
 
 	while (true)
 	{
-		Sleep(20);
+		Sleep(50);
 		if (GetSetting("Chams").Value == "OFF")
 		{
 			for (int i = 1; i <= 32; ++i)
@@ -1065,6 +1063,7 @@ void Chams()
 				const auto _this = static_cast<uintptr_t>(engine + offsets::model_ambient_min - 0x2c);
 				memory.Write<int32_t>(engine + offsets::model_ambient_min, *reinterpret_cast<uintptr_t*>(&brightness1) ^ _this);
 			}
+			continue;
 		}
 
 		for (int i = 1; i <= 64; ++i)
@@ -1106,5 +1105,3 @@ int main(int argc, char* argv[])
 	thread t10(Chams);
 	t1.join();
 }
-
-
