@@ -190,7 +190,8 @@ Setting Settings[] = {
 	Setting("AimbotFOV", "10", "Type FOV (>0)"),
 	Setting("WallCheck", "ON"),
 	Setting("Chams", "ON"),
-	Setting("ChamsBright", "600", "Type in amount")
+	Setting("ChamsBright", "600", "Type in amount"),
+	Setting("ClickToAim", "ON")
 };
 
 Setting GetSetting(string settingName) {
@@ -228,7 +229,10 @@ void CmdPrint()
 	{
 		string a;
 		infile >> a;
-		Settings[i].Value = a;
+
+		if (a != "") {
+			Settings[i].Value = a;
+		}
 	}
 
 	infile.close();
@@ -714,7 +718,12 @@ void Aimbot() {
 
 		const auto& localPlayer = memory.Read<uintptr_t>(client + offsets::dwLocalPlayer);
 
-		int KeyBind = VK_LBUTTON;
+		int KeyBind = NULL;
+
+		if (GetSetting("ClickToAim").Value == "ON") {
+			KeyBind = VK_LBUTTON;
+		}
+
 		int KeyBind2 = VK_LMENU;
 
 		uintptr_t iCurWeaponAdress = memory.Read< std::uintptr_t >(localPlayer + offsets::m_hActiveWeapon) & 0xFFF;
