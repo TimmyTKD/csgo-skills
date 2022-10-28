@@ -1056,6 +1056,7 @@ void Chams()
 	const auto engine = memory.GetModuleAddress("engine.dll");
 
 	const auto Team = Color{ 255, 50, 0 };
+	const auto Friend = Color{ 0, 40, 255 };
 	const auto Back = Color{ 255, 255, 255 };
 
 	while (true)
@@ -1092,7 +1093,7 @@ void Chams()
 			}
 			else
 			{
-				memory.Write<Color>(entity + offsets::m_clrRender, Back);
+				memory.Write<Color>(entity + offsets::m_clrRender, Friend);
 			}
 			float brightness = stof(GetSetting("ChamsBright").Value);
 			const auto _this = static_cast<uintptr_t>(engine + offsets::model_ambient_min - 0x2c);
