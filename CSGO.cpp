@@ -393,6 +393,9 @@ void TriggerBot()
 			continue;
 		}
 
+		if (memory.Read<int32_t>(localPlayer + offsets::m_lifeState) != 0)
+			continue;
+
 		if (localTeam == playerTeam)
 			continue;
 
