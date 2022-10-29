@@ -917,6 +917,10 @@ void AutoStrafe()
 	{
 		if (GetSetting("AutoStrafe").Value != "ON")
 			continue;
+
+		if (memory.Read<int32_t>(offsets::dwLocalPlayer + offsets::m_lifeState) != 0)
+			continue;
+
 		Sleep(1);
 		const auto& localPlayer = memory.Read<uintptr_t>(client + offsets::dwLocalPlayer);
 		const auto& clientState = memory.Read<uintptr_t>(engine + offsets::dwClientState);
