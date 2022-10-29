@@ -858,7 +858,7 @@ void Aimbot() {
 				float xAngle = abs(angleDegY / stof(GetSetting("AimSmoothness").Value)) < 0.1 / stof(GetSetting("AimSmoothness").Value) ? angleDegY : angleDegY / stof(GetSetting("AimSmoothness").Value);
 				float yAngle = abs(angleDeg / stof(GetSetting("AimSmoothness").Value)) < 0.25 / stof(GetSetting("AimSmoothness").Value) ? angleDeg : angleDeg < 0 ? clamp(angleDeg / stof(GetSetting("AimSmoothness").Value), -clampMax, -0.001f) : clamp(angleDeg / stof(GetSetting("AimSmoothness").Value), 0.001f, clampMax);
 
-				if (abs(xAngle) < 0.02 && abs(yAngle) < 0.02)
+				if (abs(xAngle) < 0.05 && abs(yAngle) < 0.05)
 					continue;
 
 				//cout << "\n"  << lRot.y << " | " << angleDeg;
@@ -1055,8 +1055,8 @@ void Chams()
 	const auto client = memory.GetModuleAddress("client.dll");
 	const auto engine = memory.GetModuleAddress("engine.dll");
 
-	const auto Team = Color{ 255, 50, 0 };
-	const auto Friend = Color{ 100, 100, 255 };
+	const auto Team = Color{ 255, 60, 0 };
+	const auto Friend = Color{ 60, 60, 255 };
 	const auto Back = Color{ 255, 255, 255 };
 
 	while (true)
